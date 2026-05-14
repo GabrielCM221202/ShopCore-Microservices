@@ -1,3 +1,10 @@
+server:
+  port: 8080
+
 spring:
   application:
-    name: catelog-service
+    name: catalog-service
+
+  threads:
+    virtual:
+      enabled: true
