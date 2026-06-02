@@ -10,3 +10,6 @@ spring:
   data:
     mongodb:
       uri: mongodb://root:secret@localhost:27017/catalog_db?authSource=admin
+  mvc:
+    problemdetails:
+      enabled: true
