@@ -3,6 +3,7 @@ package com.shopcore.catalog_service.controller;
 import com.shopcore.catalog_service.dto.ProductRequest;
 import com.shopcore.catalog_service.dto.ProductResponse;
 import com.shopcore.catalog_service.service.ProductService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,7 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED) // Devuelve 201 en lugar de 200
-    public ProductResponse createProduct(@RequestBody ProductRequest request) {
+    public ProductResponse createProduct(@Valid @RequestBody ProductRequest request) {
         log.info("Recibida petición para crear producto: {}", request.getName());
         return productService.createProduct(request);
     }

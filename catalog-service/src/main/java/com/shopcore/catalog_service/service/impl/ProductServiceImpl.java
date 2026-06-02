@@ -21,10 +21,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductResponse createProduct(ProductRequest request) {
-        // Regla de Negocio: El precio no puede ser negativo
-        if (request.getBasePrice().compareTo(BigDecimal.ZERO) < 0) {
-            throw new IllegalArgumentException("El precio base de un producto no puede ser negativo");
-        }
+
         // 1. DTO a Entidad
         Product product = productMapper.toEntity(request);
         // 2. Guardar
