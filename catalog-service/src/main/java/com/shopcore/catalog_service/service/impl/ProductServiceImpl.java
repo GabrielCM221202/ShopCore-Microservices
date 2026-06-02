@@ -9,6 +9,8 @@ import com.shopcore.catalog_service.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
@@ -24,5 +26,13 @@ public class ProductServiceImpl implements ProductService {
         Product savedProduct = productRepository.save(product);
         // 3. Entidad a DTO
         return productMapper.toResponse(savedProduct);
+    }
+
+    @Override
+    public List<ProductResponse> getAllProducts() {
+        return productRepository.findAll()
+                .stream()
+                .map(productMapper::toResponse)
+                .toList();
     }
 }
