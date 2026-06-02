@@ -4,7 +4,9 @@ server:
 spring:
   application:
     name: catalog-service
-
   threads:
     virtual:
       enabled: true
+  data:
+    mongodb:
+      uri: mongodb://root:secret@localhost:27017/catalog_db?authSource=admin
