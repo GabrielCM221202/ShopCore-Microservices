@@ -40,4 +40,6 @@ public class Product {
 
     @Field("is_active")
     private boolean isActive;
+
+    private ProductStatus status = ProductStatus.ACTIVE;
 }

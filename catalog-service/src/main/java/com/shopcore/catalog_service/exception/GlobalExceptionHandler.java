@@ -67,6 +67,20 @@ public class GlobalExceptionHandler {
         return problemDetail;
     }
 
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ProblemDetail handleResourceNotFoundException(ResourceNotFoundException ex){
+        log.warn("Recurso no encontrado: {}", ex.getMessage());
+
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, ex.getMessage());
+        problemDetail.setTitle("Recurso No Encontrado");
+        problemDetail.setType(URI.create("https://api.shopcore.com/errors/not-found"));
+        problemDetail.setProperty("errors", List.of(
+                Map.of("field", "id", "message", ex.getMessage())
+        ));
+
+        return problemDetail;
+    }
+
     @ExceptionHandler(Exception.class)
     public ProblemDetail handleGeneric(Exception ex) {
         log.error("Excepción genérica capturada: {}", ex.getClass().getName());
